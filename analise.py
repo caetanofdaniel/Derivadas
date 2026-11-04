@@ -24,3 +24,26 @@ def analisar_convergencia(resultados, epsilon, metodo="progressiva"):
 
     return convergiu
 
+
+def analisar_sinal(f, valores_x, h, epsilon):
+    resultados = []
+
+    for x in valores_x:
+        derivada = derivada_central(f, x, h)
+
+        if derivada > epsilon:
+            sinal = "Crescente"
+
+        elif derivada < -epsilon:
+            sinal = "Decrescente"
+
+        else:
+            sinal = "Derivada próxima de zero"
+
+        resultados.append({
+            "x": x,
+            "derivada": derivada,
+            "sinal": sinal
+        })
+
+    return resultados

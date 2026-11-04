@@ -4,7 +4,7 @@ from funcao import funcao
 from derivadas import derivada
 from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao, criar_dataframe_derivada, criar_dataframe_completo
 from newton import metodo_newton
-from analise import analisar_convergencia
+from analise import analisar_convergencia, analisar_sinal
 
 def main():
     x0 = 3
@@ -65,6 +65,16 @@ def main():
     )
 
     print(f"Estabilizou: {convergiu_h}")
+
+    sinais = analisar_sinal(funcao, valores_x, 0.1, epsilon)
+
+    print("\nAnálise dos sinais: ")
+
+    for item in sinais:
+        print(item)
+
+
+
 
 if __name__ == "__main__":
     main()
