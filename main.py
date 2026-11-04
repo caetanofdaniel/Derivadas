@@ -2,7 +2,7 @@
 
 from funcao import funcao
 from derivadas import derivada
-from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao
+from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao, criar_dataframe_derivada
 
 def main():
     x0 = 3
@@ -19,6 +19,10 @@ def main():
     valores_x = gerar_valores_x(0, 5, 1)
     tabela = criar_dataframe_funcao(funcao, valores_x)
     print(tabela)
+
+    tabela_derivadas = criar_dataframe_derivada(funcao, valores_x, 0.1)
+    print("\nTabela das derivadas: ")
+    print(tabela_derivadas)
 
     h_inicial = 0.1
 

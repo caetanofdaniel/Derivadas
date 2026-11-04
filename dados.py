@@ -51,3 +51,16 @@ def criar_dataframe_funcao(f, valores_x):
         })
 
     return pd.DataFrame(dados)
+
+def criar_dataframe_derivada(f, valores_x, h):
+    dados = []
+
+    for x in valores_x:
+        dados.append({
+            "x": x,
+            "Progressiva": derivada_progressiva(f, x, h),
+            "Regressiva": derivada_regressiva(f, x, h),
+            "Central": derivada_central(f, x, h)
+        })
+
+    return pd.DataFrame(dados)
