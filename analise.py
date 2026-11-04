@@ -47,3 +47,50 @@ def analisar_sinal(f, valores_x, h, epsilon):
         })
 
     return resultados
+
+def encontrar_pontos_criticos(f, valores_x, h, epsilon):
+    pontos = []
+
+    for x in valores_x:
+        derivada = derivada_central(f, x, h)
+
+        if abs(derivada) < epsilon:
+            pontos.append({
+                "x": x,
+                "f(x)": f(x),
+                "derivada": derivada
+            })
+
+    return pontos
+
+
+def classificar_pontos_criticos(f, pontos, h, epsilon):
+    resultados = []
+
+    for ponto in pontos:
+        x = ponto["x"]
+
+        esquerda = derivada_central(f, x - h, h)
+        direita = derivada_central(f, x + h, h)
+
+        if esquerda < -epsilon and direita > epsilon:
+            classificacao = "Mínimo local"
+
+        elif esquerda > epsilon and direita < -epsilon:
+            classificacao = "Máximo local"
+
+        elif (esquerda > epsilon and direita > epsilon) or (
+            esquerda < -epsilon and direita < -epsilon
+        ):
+            classificacao = "Não é extremo local"
+
+        else:
+            classificacao = "Inconclusivo"
+
+        resultados.append({
+            "x": x,
+            "f(x)": ponto["f(x)"],
+            "classificacao": classificacao
+        })
+
+    return resultados
