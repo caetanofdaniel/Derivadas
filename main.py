@@ -2,7 +2,7 @@
 
 from funcao import funcao
 from derivadas import derivada
-from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao, criar_dataframe_derivada
+from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao, criar_dataframe_derivada, criar_dataframe_completo
 
 def main():
     x0 = 3
@@ -23,6 +23,13 @@ def main():
     tabela_derivadas = criar_dataframe_derivada(funcao, valores_x, 0.1)
     print("\nTabela das derivadas: ")
     print(tabela_derivadas)
+
+    tabela_completa = criar_dataframe_completo(funcao, valores_x, 0.1)
+    print("\nTabela completa: ")
+    print(tabela_completa.to_string(
+        index = False,
+        float_format = lambda valor : f"{valor:.4f}"
+    ))
 
     h_inicial = 0.1
 

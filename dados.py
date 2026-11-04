@@ -64,3 +64,15 @@ def criar_dataframe_derivada(f, valores_x, h):
         })
 
     return pd.DataFrame(dados)
+
+def criar_dataframe_completo(f, valores_x, h):
+    tabela_funcao = criar_dataframe_funcao(f, valores_x)
+    tabela_derivadas = criar_dataframe_derivada(f, valores_x, 0.1)
+
+    tabela_completa = pd.merge(
+        tabela_funcao,
+        tabela_derivadas,
+        on= "x"
+    )
+
+    return tabela_completa
