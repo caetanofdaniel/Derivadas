@@ -1,7 +1,8 @@
 #main()
 
 from funcao import funcao
-from derivadas import derivada_progressiva, derivada_regressiva, derivada_central, derivada
+from derivadas import derivada
+from analise import testar_valores_h
 
 def main():
     x0 = 3
@@ -10,15 +11,10 @@ def main():
     epsilon = 0.0001
     kmax = 100
 
-    for h in valores_h:
-        progressiva = derivada_progressiva(funcao, x0, h)
-        regressiva = derivada_regressiva(funcao, x0, h)
-        central = derivada_central(funcao, x0, h)
+    resultados = testar_valores_h(funcao, x0, valores_h)
 
-        print("\nh = ", h)
-        print(f"Progressiva: {progressiva:.4f}")
-        print(f"Regressiva: {regressiva:.4f}")
-        print(f"Central: {central:.4f}")
+    for item in resultados:
+        print(item)
 
     h_inicial = 0.1
 
