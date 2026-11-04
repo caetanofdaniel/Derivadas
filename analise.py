@@ -22,3 +22,17 @@ def testar_valores_h(f, x0, valores_h):
             
 
     return resultados
+
+def gerar_valores_x(inicio, fim, passo):
+    valores = []
+
+    if passo <= 0:
+        raise ValueError("O passo deve ser positivo")
+
+    x = inicio
+
+    while x <= fim:
+        valores.append(round(x, 10))
+        x += passo
+
+    return valores
