@@ -16,7 +16,7 @@ def derivada_central(f, x, h):
 def derivada(f, x, h, epsilon, kmax, metodo="central"):
 
     metodos = {
-        "progressiva":derivada_regressiva,
+        "progressiva":derivada_progressiva,
         "regressiva":derivada_regressiva,
         "central":derivada_central
     }
