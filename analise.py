@@ -3,36 +3,24 @@
 #encontrar_pontos_criticos()
 #classicar_pontos_criticos()
 
-from derivadas import derivada_progressiva, derivada_regressiva, derivada_central
+from derivadas import derivada_central
 
-def testar_valores_h(f, x0, valores_h):
-    resultados = []
+def analisar_convergencia(resultados, epsilon, metodo="progressiva"):
+    anterior = None
+    convergiu = False
 
-    for h in valores_h:
-        progressiva = derivada_progressiva(f, x0, h)
-        regressiva = derivada_regressiva(f, x0, h)
-        central = derivada_central(f, x0, h)
+    for item in resultados:
+        atual = item[metodo]
 
-        resultados.append({
-            "h": h,
-            "progressiva": progressiva,
-            "regressiva": regressiva,
-            "central": central,
-        })
-            
+        if anterior is not None:
+            diferenca = abs(atual - anterior)
 
-    return resultados
+            print(f"h = {item['h']}")
+            print(f"Diferença = {diferenca:.8f}")
 
-def gerar_valores_x(inicio, fim, passo):
-    valores = []
+            convergiu = diferenca < epsilon
 
-    if passo <= 0:
-        raise ValueError("O passo deve ser positivo")
+        anterior = atual
 
-    x = inicio
+    return convergiu
 
-    while x <= fim:
-        valores.append(round(x, 10))
-        x += passo
-
-    return valores

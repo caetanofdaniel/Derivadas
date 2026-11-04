@@ -3,6 +3,8 @@
 from funcao import funcao
 from derivadas import derivada
 from dados import testar_valores_h, gerar_valores_x, criar_dataframe_funcao, criar_dataframe_derivada, criar_dataframe_completo
+from newton import metodo_newton
+from analise import analisar_convergencia
 
 def main():
     x0 = 3
@@ -45,6 +47,24 @@ def main():
     print(f"Resultado: {resultado:.6f}")
     print(f"Iterações: {iteracoes}")
     print(f"Convergência: {convergiu}")
+
+    raiz, iteracoes, convergiu = metodo_newton(
+        funcao, x0, 0.001, epsilon, kmax
+    )
+    print()
+    print(f"Raiz: {raiz:.6f}")
+    print(f"Iterações: {iteracoes}")
+    print(f"Convergência: {convergiu}")
+
+    print("\nAnálise de convergência: ")
+
+    convergiu_h = analisar_convergencia(
+        resultados,
+        epsilon,
+        "progressiva"
+    )
+
+    print(f"Estabilizou: {convergiu_h}")
 
 if __name__ == "__main__":
     main()
